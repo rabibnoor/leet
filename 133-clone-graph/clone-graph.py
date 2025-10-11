@@ -15,7 +15,7 @@ class Solution(object):
             copy = Node()
             copy.val = node.val
             self.gen_nodes.append(copy)
-            print(node.val)
+            #print(node.val)
             for n in node.neighbors:
                 if n:
                     if n not in self.all_nodes:
