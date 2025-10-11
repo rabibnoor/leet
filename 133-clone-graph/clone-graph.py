@@ -7,26 +7,22 @@ class Node(object):
 """
 
 class Solution(object):
-    all_nodes = []
-    gen_nodes = []
+    all_nodes = {}
     def traverse(self, node):
         if node:
-            self.all_nodes.append(node)
             copy = Node()
             copy.val = node.val
-            self.gen_nodes.append(copy)
+            self.all_nodes[node] = copy
+            
             #print(node.val)
             for n in node.neighbors:
                 if n:
-                    try:
-                        idx = self.all_nodes.index(n)
-                    except:
-                        idx = -1
-                    if idx == -1:
+                   
+                    if n not in self.all_nodes:
                         newcopy = self.traverse(n)
                         copy.neighbors.append(newcopy)
                     else:
-                        copy.neighbors.append(self.gen_nodes[idx])
+                        copy.neighbors.append(self.all_nodes[n])
 
             return copy
 
@@ -36,8 +32,7 @@ class Solution(object):
         :type node: Node
         :rtype: Node
         """
-        self.all_nodes = []
-        self.gen_nodes = []
+        self.all_nodes = {}
         copy = self.traverse(node)
         return copy
 
