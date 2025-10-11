@@ -18,11 +18,14 @@ class Solution(object):
             #print(node.val)
             for n in node.neighbors:
                 if n:
-                    if n not in self.all_nodes:
+                    try:
+                        idx = self.all_nodes.index(n)
+                    except:
+                        idx = -1
+                    if idx == -1:
                         newcopy = self.traverse(n)
                         copy.neighbors.append(newcopy)
                     else:
-                        idx = self.all_nodes.index(n)
                         copy.neighbors.append(self.gen_nodes[idx])
 
             return copy
