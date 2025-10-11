@@ -55,17 +55,5 @@ class Solution(object):
 
         return self.bfs(myQ, [])
 
-        if root.left:
-            self.qpush(root.left, myQ)
-        
-        if root.right:
-            self.qpush(root.right, myQ)
-
-        for item in myQ:
-            print(item.val)
-        val = self.qpop(myQ)
-        print(val)
-        for item in myQ:
-            print(item.val)
-        
+      
         
