@@ -43,7 +43,7 @@ class Trie(object):
                     trie = trie[i]
                 else:
                     return False
-        return True
+            return True
 
         
 
