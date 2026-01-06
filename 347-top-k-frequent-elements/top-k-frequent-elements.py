@@ -11,20 +11,18 @@ class Solution(object):
                 tally[i] += 1
             else:
                 tally[i] = 1
-        total = []
-        elem = []
+        total = [[] for _ in range(len(nums) + 1)]
+         
         for key in tally:
-            total.append(tally[key])
-            elem.append(key)
+            total[tally[key]].append(key)
         ret = []
-        for i in range(0,k):
-            top = 0
-            topel = 0
-            for j in range(len(total)):
-                if total[j] > top and elem[j] not in ret:
-                    top = total[j]
-                    topel = elem[j]
-            ret.append(topel)
-        return ret
+        for i in range(len(total)-1, 0, -1):
+            for v in total[i]:
+                ret.append(v)
+                if len(ret) == k:
+                    return ret
+
+
+
 
         
