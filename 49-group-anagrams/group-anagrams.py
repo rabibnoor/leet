@@ -15,16 +15,17 @@ class Solution(object):
             for c in st:
                 chv = ord(c)-ord('a')
                 srt[chv]+=1
-            val = ""
-            for i in range(0, 26):
-                if srt[i]!=0:
-                    val += str(i) + "@" + str(srt[i]) +"$"
-                    srt[i] = 0
+            val = tuple(srt)
+           
             if val in words: 
                 words[val].append(st) 
             else: 
                 words[val] = [] 
                 words[val].append(st) 
+            for i in range(0, 26):
+                if srt[i]!=0:
+                   
+                    srt[i] = 0
         ret = [] 
         for k in words: 
             ret.append(words[k]) 
