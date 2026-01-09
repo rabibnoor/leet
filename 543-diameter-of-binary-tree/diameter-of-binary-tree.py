@@ -13,11 +13,11 @@ class Solution(object):
         maxdia = [0] 
         def dfs(root):
             #nonlocal maxdia 
+            if not root:
+                return 0
             left = right = 0
-            if root.left:
-                left  = dfs(root.left)
-            if root.right:
-                right = dfs(root.right)
+            left  = dfs(root.left)
+            right = dfs(root.right)
             
             height = max(left, right) + 1
             dia = left + right
