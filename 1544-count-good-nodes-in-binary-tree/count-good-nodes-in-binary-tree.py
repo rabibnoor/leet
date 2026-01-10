@@ -17,7 +17,7 @@ class Solution(object):
                 return
             if root.val >= top:
                 gnode[0] +=1
-                gnodes.append(root.val)
+                #gnodes.append(root.val)
                 top = root.val
             dfs(root.left, top)
             dfs(root.right, top)
