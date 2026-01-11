@@ -8,7 +8,7 @@ class Solution(object):
 
         ret = []
         subset = []
-        can = sorted(candidates)
+        can = candidates
         def dfs(i, cur, total):
             if total == target:
                 ret.append(list(cur))
