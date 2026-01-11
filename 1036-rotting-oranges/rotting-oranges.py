@@ -31,7 +31,7 @@ class Solution(object):
                 if grid[i][j]  == 2:
                     ffil(i, j, 0)
         mx = 0
-        print(grid)
+        #print(grid)
         for i in range(rl):
             for j in range(cl):
                 if grid[i][j] == 1:
