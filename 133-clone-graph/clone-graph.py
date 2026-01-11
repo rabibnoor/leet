@@ -7,34 +7,25 @@ class Node(object):
 """
 
 class Solution(object):
-    all_nodes = {}
-    def traverse(self, node):
-        if node:
-            copy = Node()
-            copy.val = node.val
-            self.all_nodes[node] = copy
-            
-            #print(node.val)
-            for n in node.neighbors:
-                if n:
-                   
-                    if n not in self.all_nodes:
-                        newcopy = self.traverse(n)
-                        copy.neighbors.append(newcopy)
-                    else:
-                        copy.neighbors.append(self.all_nodes[n])
-
-            return copy
-
-
     def cloneGraph(self, node):
         """
         :type node: Node
         :rtype: Node
         """
-        self.all_nodes = {}
-        copy = self.traverse(node)
-        return copy
 
+        visited = {}
 
+        def dfs(node):
+            if node in visited:
+                return visited[node]
+            if not node:
+                return None
+            newnode = Node(node.val, [])
+            visited[node] = newnode
+            for c in node.neighbors:
+                newc = dfs(c)
+                newnode.neighbors.append(newc)
+            return newnode
+        return dfs(node)
+        
         
