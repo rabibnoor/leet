@@ -6,24 +6,23 @@ class Solution(object):
         :rtype: List[List[int]]
         """
 
-        ret = set()
+        ret = []
         subset = []
         can = sorted(candidates)
-        hsh = {}
-        def dfs(n):
-            if n == 0:
-                ret.add(tuple(sorted(list(subset))))
+        def dfs(i, cur, total):
+            if total == target:
+                ret.append(list(cur))
                 return 
-            if n < 0:
+            if i>=len(candidates) or total > target:
                 return 
-            for i in can:
-
-                subset.append(i)
-                dfs(n-i)
-                subset.pop()
-
-        dfs(target)
-        return [list(t) for t in ret]
+            
+            cur.append(can[i])
+            dfs(i, cur, total+can[i])
+            cur.pop()
+            dfs(i+1, cur, total)
+            
+        dfs(0, subset, 0)
+        return ret
 
             
 
