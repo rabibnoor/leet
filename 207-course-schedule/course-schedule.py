@@ -1,49 +1,33 @@
 class Solution(object):
-    visited = {}
-    def dfs(self, adj, key):
-        if key in adj:
-            val = adj[key]
-            for k in val:
-                #print(key, k)
-                if k in self.visited and self.visited[k] == 1:
-                    return False
-                if k in self.visited and self.visited[k] == 2:
-                    continue
-                
-                self.visited[k] = 1
-                ret = self.dfs( adj, k)
-                if ret == False:
-                    return False
-                self.visited[k] = 2
-            self.visited[key] = 2
-
     def canFinish(self, numCourses, prerequisites):
-        """
-        :type numCourses: int
-        :type prerequisites: List[List[int]]
-        :rtype: bool
-        """
-        self.visited = {}
-        adj = {}
-        courses = numCourses
-        prereq = prerequisites
-        for p in prereq:
-            n = p[0]
-            m = p[1]
-            if n in adj:
-                adj[n][m] = 1
+        vis = {}
+        for a, b in prerequisites:
+            if a in vis:
+                vis[a][b] = 1
             else:
-                adj[n] = {}
-                adj[n][m] = 1
-            
-            
-        #print(adj)
-        for k in adj:
-            if k not in self.visited:
-                self.visited[k] = 1
-                ret = self.dfs(adj, k)
-                if ret == False:
+                vis[a] = {b: 1}
+
+        stack = {}   # recursion stack
+        done = {}    # fully processed nodes
+
+        def dfs(node):
+            if node in done:
+                return True
+            if node in stack:
+                return False
+            if node not in vis:
+                done[node] = True
+                return True
+
+            stack[node] = True
+            for nei in vis[node]:
+                if not dfs(nei):
                     return False
+            del stack[node]
+            done[node] = True
+            return True
+
+        for k in vis:
+            if not dfs(k):
+                return False
         return True
-        
-        
