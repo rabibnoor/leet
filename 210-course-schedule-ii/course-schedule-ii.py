@@ -42,13 +42,13 @@ class Solution(object):
            
 
         for i in range(numCourses):
-            if i in adj:
-               if not dfs(i):
-                    return []
+            
+            if not dfs(i):
+                return []
 
-        for i in range(numCourses):
-            if i not in visited:
-                ret.append(i)
+        #for i in range(numCourses):
+        #    if i not in visited:
+        #        ret.append(i)
     
         #ret.reverse()
         #print(ret)
