@@ -14,7 +14,7 @@ class Solution(object):
                 adj[i[0]] = [i[1]]
         visited = {}
         ret = []
-        print(adj)
+        #print(adj)
         def dfs(v):
             if visited.get(v) == 2:
                 #print("v", v)
