@@ -7,12 +7,12 @@ class Solution(object):
         robbed = {}
         def torob(i, t):
             if i >= len(nums):
-                return t
-            if (i,t) in robbed:
-                return robbed[(i, t)]
+                return 0
+            if i in robbed:
+                return robbed[i]
             roby = torob(i+2, t+nums[i])
             
             robn = torob(i+1, t) 
-            robbed[(i, t)] = max(roby, robn)
-            return max(roby, robn)
+            robbed[i] = max(nums[i]+roby, robn)
+            return robbed[i] 
         return torob(0, 0)
